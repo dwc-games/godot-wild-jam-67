@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://5j4jxfm7ie4j"]
+
+[sub_resource type="Gradient" id="Gradient_fd5pt"]
+offsets = PackedFloat32Array(0.142349, 1)
+colors = PackedColorArray(0.0784314, 0.133333, 0.25098, 1, 0.980392, 0.380392, 0.290196, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rt5ee"]
+gradient = SubResource("Gradient_fd5pt")
+width = 2048
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="Startup" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.39)
+projection = 1
+fov = 93.4
+size = 5.0
+far = 100.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92883, 2.34833, 2.09666)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = SubResource("GradientTexture2D_rt5ee")

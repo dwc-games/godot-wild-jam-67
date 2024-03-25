@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://l24mxvtplinx"]
+
+[ext_resource type="Script" path="res://Connector_UI_GAMECONTROLLER.gd" id="1_8ptye"]
+[ext_resource type="PackedScene" uid="uid://bxqvxmtsj2gef" path="res://audio/audiocontroller.tscn" id="1_a0311"]
+[ext_resource type="Script" path="res://Connector_UI_AUDIO.gd" id="1_vgqm3"]
+[ext_resource type="PackedScene" uid="uid://5m41illclce3" path="res://ui/userinterface.tscn" id="1_wmi8n"]
+[ext_resource type="Script" path="res://LevelLoader.gd" id="2_hihrb"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Connector_UI_GAMECONTROLLER" type="Node" parent="." node_paths=PackedStringArray("ui", "level_loader")]
+script = ExtResource("1_8ptye")
+ui = NodePath("../userinterface")
+level_loader = NodePath("../LevelLoader")
+
+[node name="Connector_UI_AUDIO" type="Node" parent="." node_paths=PackedStringArray("audio", "ui")]
+script = ExtResource("1_vgqm3")
+audio = NodePath("../Audiocontroller")
+ui = NodePath("../userinterface")
+
+[node name="Audiocontroller" parent="." instance=ExtResource("1_a0311")]
+
+[node name="userinterface" parent="." instance=ExtResource("1_wmi8n")]
+control_level = 1
+
+[node name="LevelLoader" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_hihrb")

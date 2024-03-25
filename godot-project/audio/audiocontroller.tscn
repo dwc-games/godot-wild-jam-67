@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxqvxmtsj2gef"]
+
+[ext_resource type="Script" path="res://audio/audiocontroller.gd" id="1_me3da"]
+
+[node name="Audiocontroller" type="Node"]
+script = ExtResource("1_me3da")
+
+[node name="AudioStreamPlayer_music" type="AudioStreamPlayer" parent="."]
+autoplay = true

@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://x2wchoy5y8w3"]
+
+[ext_resource type="Script" path="res://game/GameTile.gd" id="1_4iad2"]
+[ext_resource type="Texture2D" uid="uid://dr0ga007l5m2p" path="res://game/3d/hex-tile_hex.png" id="3_1of51"]
+[ext_resource type="ArrayMesh" uid="uid://bkcrabq582dml" path="res://game/3d/hex-mesh.res" id="4_ocoeg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqg42"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("3_1of51")
+normal_enabled = true
+normal_scale = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dmfqf"]
+height = 0.1
+radius = 0.9
+
+[node name="GameTile" type="Node3D"]
+script = ExtResource("1_4iad2")
+
+[node name="TopPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="hex" type="MeshInstance3D" parent="."]
+layers = 3
+material_override = SubResource("StandardMaterial3D_uqg42")
+lod_bias = 2.0
+mesh = ExtResource("4_ocoeg")
+skeleton = NodePath("")
+
+[node name="SelectionArea" type="Area3D" parent="."]
+
+[node name="BaseCollision" type="CollisionShape3D" parent="SelectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_dmfqf")
+
+[node name="Highlight" type="Node3D" parent="."]
+visible = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Highlight"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
+light_intensity_lumens = 100.0
+light_color = Color(0.388235, 1, 0, 1)
+spot_range = 4.0
+spot_attenuation = 0.0
+spot_angle = 12.0
+spot_angle_attenuation = 0.5
+
+[node name="HoverHighlight" type="Node3D" parent="."]
+visible = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="HoverHighlight"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
+light_intensity_lumens = 100.0
+light_color = Color(1, 0, 1, 1)
+spot_range = 4.0
+spot_attenuation = 0.0
+spot_angle = 12.0
+spot_angle_attenuation = 0.5
+
+[node name="DebugLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0.25)
+visible = false
+billboard = 1
+no_depth_test = true
+text = "x: 0, y: 0"
+
+[connection signal="input_event" from="SelectionArea" to="." method="_on_selection_area_input_event"]
+[connection signal="mouse_entered" from="SelectionArea" to="." method="_on_selection_area_mouse_entered"]
+[connection signal="mouse_exited" from="SelectionArea" to="." method="_on_selection_area_mouse_exited"]

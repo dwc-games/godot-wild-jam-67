@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3gnt7qstoqos"]
+
+[ext_resource type="Script" path="res://game/GamePlayerBot.gd" id="1_org76"]
+
+[node name="BotPlayer" type="Node"]
+script = ExtResource("1_org76")
+player_id = 1

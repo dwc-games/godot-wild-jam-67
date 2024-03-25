@@ -1,0 +1,745 @@
+[gd_scene load_steps=18 format=3 uid="uid://5m41illclce3"]
+
+[ext_resource type="Script" path="res://ui/scripts/userinterface.gd" id="1_y808o"]
+[ext_resource type="Texture2D" uid="uid://dvc1bsgdmg3b0" path="res://ui/ressources/images/logo.png" id="2_4c0y7"]
+[ext_resource type="Texture2D" uid="uid://v34ak86vn3n8" path="res://ui/ressources/images/googly_eye_background.png" id="3_1h56k"]
+[ext_resource type="Texture2D" uid="uid://cvfaejdh5dqp7" path="res://ui/ressources/images/googly_eye_outline.png" id="4_dqf13"]
+[ext_resource type="Script" path="res://ui/scripts/CharacterBody2D.gd" id="5_hx5vd"]
+[ext_resource type="Texture2D" uid="uid://bvaficx4qnobn" path="res://ui/ressources/images/tutorial.png" id="6_7i8u5"]
+[ext_resource type="Texture2D" uid="uid://dw71w55esjdh8" path="res://ui/ressources/images/credits.png" id="6_63kpq"]
+[ext_resource type="Texture2D" uid="uid://di82fkp6dvjbh" path="res://ui/ressources/images/googly_eye_small.png" id="6_ko5w1"]
+[ext_resource type="Theme" uid="uid://vl0wc7ygbmvn" path="res://ui/ressources/theme.tres" id="7_3rmy1"]
+[ext_resource type="Texture2D" uid="uid://ot8qs5wd72qn" path="res://ui/ressources/images/winscreen.png" id="7_dk3q0"]
+[ext_resource type="Texture2D" uid="uid://dgxynn4ioc4c0" path="res://game/res/stone-square.png" id="10_jhfhi"]
+[ext_resource type="Texture2D" uid="uid://b601slicm6xkk" path="res://game/res/paper-02.png" id="11_g3y55"]
+[ext_resource type="Texture2D" uid="uid://b1iar1rg7llfg" path="res://game/res/scissor-02.png" id="12_2cj7w"]
+[ext_resource type="Texture2D" uid="uid://dmg6vkd17fupv" path="res://ui/ressources/images/godot_theme.png" id="13_bxeby"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8xxsd"]
+radius = 40.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7d6x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ronsc"]
+
+[node name="userinterface" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_y808o")
+
+[node name="googly_eye" type="Node2D" parent="."]
+visible = false
+position = Vector2(615, 107)
+scale = Vector2(0.2, 0.2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="googly_eye"]
+
+[node name="Sprite2D" type="Sprite2D" parent="googly_eye/StaticBody2D"]
+texture = ExtResource("3_1h56k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="googly_eye/StaticBody2D"]
+texture = ExtResource("4_dqf13")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="googly_eye/StaticBody2D"]
+polygon = PackedVector2Array(22, -125.9, 22, -124.5, 53, -116.5, 53, -115.1, 75, -103.2, 75, -101.9, 98, -81.9, 98, -79.6, 111, -63.7, 111, -61.4, 123, -34.4, 123, -30, 127, -12.2, 127, 14, 125.8, 14, 123.8, 32, 122.5, 32, 116.5, 53, 115.1, 53, 97.1, 83, 95.8, 83, 81.9, 98, 79.6, 98, 63.7, 111, 61.4, 111, 34.4, 123, 30, 123, 12.2, 127, -14, 127, -14, 125.8, -36, 122.7, -36, 121.4, -65, 110.4, -65, 109, -83, 97.1, -83, 95.8, -98, 81.9, -98, 79.6, -111, 63.7, -111, 61.3, -119, 46.5, -119, 43.3, -126, 20.3, -126, 12, -127.2, 1, -122.4, 1, -114.4, 42, -113.7, 42, -105.7, 61, -105, 61, -94, 77, -93.2, 77, -62.3, 105, -60.5, 105, -43.7, 114, -40.7, 114, -17.7, 121, -10, 121, 8, 121.9, 8, 121.2, 26, 119.2, 26, 118.6, 61, 105.6, 93, 78.1, 93, 76.3, 105, 62.3, 105, 60.5, 112, 48.5, 112, 45.7, 121, 17.7, 121, 10, 121.9, -8, 121.3, -8, 118.2, -30, 117.6, -30, 105.7, -61, 105, -61, 94, -77, 93.2, -77, 62.3, -105, 60.6, -105, 27.7, -119, 22.9, -119, -8, -121.8, -30, -118.2, -30, -117.6, -61, -105.7, -61, -105, -77, -94, -77, -93.1, -93, -78.2, -93, -76.3, -105, -62.3, -105, -60.5, -112, -48.5, -112, -45.6, -119, -27.8, -119, -22.8, -123.4, 0.100006, -127, -0.199997, -127, -12.2, -122.7, -36, -121.4, -36, -110.4, -65, -109, -65, -97.1, -83, -95.8, -83, -81.9, -98, -79.5, -98, -51.6, -117, -48.2, -117, -30.4, -124, -25.3, -124, -14, -125.7, -14, -127)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="googly_eye"]
+script = ExtResource("5_hx5vd")
+
+[node name="Sprite2D" type="Sprite2D" parent="googly_eye/CharacterBody2D"]
+texture = ExtResource("6_ko5w1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="googly_eye/CharacterBody2D"]
+shape = SubResource("CircleShape2D_8xxsd")
+one_way_collision_margin = 0.0
+
+[node name="PanelContainer_fullscreen" type="PanelContainer" parent="." groups=["ui_fullscreen"]]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="PanelContainer_final" type="PanelContainer" parent="PanelContainer_fullscreen" groups=["ui_complete", "ui_final"]]
+visible = false
+texture_filter = 1
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer_fullscreen/PanelContainer_final" groups=["ui_complete", "ui_final"]]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_63kpq")
+
+[node name="Button_main_menu" type="Button" parent="PanelContainer_fullscreen/PanelContainer_final" groups=["ui_complete", "ui_final"]]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s7d6x")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ronsc")
+
+[node name="PanelContainer_tutorial" type="PanelContainer" parent="PanelContainer_fullscreen" groups=["ui_complete", "ui_tutorial"]]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer_fullscreen/PanelContainer_tutorial" groups=["ui_complete", "ui_tutorial"]]
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_7i8u5")
+
+[node name="Button_play" type="Button" parent="PanelContainer_fullscreen/PanelContainer_tutorial" groups=["ui_complete", "ui_tutorial"]]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 8
+text = "play"
+
+[node name="PanelContainer_help_menu" type="PanelContainer" parent="PanelContainer_fullscreen" groups=["ui_complete", "ui_ingame_menu", "ui_options", "ui_startup", "ui_submenu_levels", "ui_tween"]]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(720, 480)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="PanelContainer_ingame_menu" type="PanelContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu" groups=["ui_complete", "ui_ingame_menu", "ui_tween"]]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu" groups=["ui_complete", "ui_ingame_menu"]]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer" groups=["ui_complete", "ui_ingame_menu"]]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer5" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer5" groups=["ui_complete", "ui_ingame_menu"]]
+custom_minimum_size = Vector2(426, 67)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 90.0
+texture = ExtResource("2_4c0y7")
+expand_mode = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer5" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer" groups=["ui_complete", "ui_ingame_menu"]]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_resume" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_menu"]]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Resume"
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer" groups=["ui_complete", "ui_ingame_menu"]]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_options" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_ingame_menu", "ui_overlay_button_menu"]]
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Options"
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer" groups=["ui_complete", "ui_ingame_menu"]]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer3" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_main" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer3" groups=["ui_complete", "ui_ingame_menu"]]
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Main Menu"
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer3" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel4" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer" groups=["ui_complete", "ui_ingame_menu", "ui_spacer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="PanelContainer_options" type="PanelContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu" groups=["ui_complete", "ui_options", "ui_tween"]]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options" groups=["ui_complete", "ui_options"]]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer" groups=["ui_complete", "ui_options"]]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
+
+[node name="Label_volume" type="Label" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/GridContainer" groups=["ui_complete", "ui_options"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "Master Volume"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HSlider_volume" type="HSlider" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/GridContainer" groups=["ui_complete", "ui_options", "ui_options_volume_general"]]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+
+[node name="Label_music" type="Label" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/GridContainer" groups=["ui_complete", "ui_options"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "Music Volume"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HSlider_music" type="HSlider" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/GridContainer" groups=["ui_complete", "ui_options", "ui_options_volume_music"]]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer" groups=["ui_complete", "ui_options", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer" groups=["ui_complete", "ui_options"]]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_options", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_options_back" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_options"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Back"
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_options", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel3" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer" groups=["ui_complete", "ui_options", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="PanelContainer_levels" type="PanelContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu" groups=["ui_complete", "ui_submenu_levels", "ui_tween"]]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_levels" groups=["ui_complete", "ui_submenu_levels"]]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_levels/VBoxContainer" groups=["ui_complete", "ui_submenu_levels", "ui_submenu_levels_grid"]]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_levels/VBoxContainer" groups=["ui_complete", "ui_submenu_levels"]]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_levels/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_spacer", "ui_submenu_levels"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_options_back" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_levels/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_submenu_levels"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Back"
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_levels/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_spacer", "ui_submenu_levels"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer_main_menu" type="PanelContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu" groups=["ui_complete", "ui_startup", "ui_tween"]]
+layout_mode = 2
+theme = ExtResource("7_3rmy1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu" groups=["ui_complete", "ui_startup"]]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer" groups=["ui_complete", "ui_startup"]]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer5" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer5" groups=["ui_complete", "ui_startup"]]
+custom_minimum_size = Vector2(426, 67)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 90.0
+texture = ExtResource("2_4c0y7")
+expand_mode = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer5" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="Panel_spacer" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer" groups=["ui_complete", "ui_startup"]]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Humans"
+
+[node name="HumanCountLabel" type="Label" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer2" groups=["ui_human_count"]]
+layout_mode = 2
+text = "1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Bots"
+
+[node name="BotCountLabel" type="Label" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer" groups=["ui_bot_count"]]
+layout_mode = 2
+text = "2"
+
+[node name="Button_change_players" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4" groups=["ui_complete", "ui_startup"]]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "change players"
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer" groups=["ui_complete", "ui_startup"]]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_play_tutorial" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_startup"]]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Play"
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer" groups=["ui_complete", "ui_startup"]]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer3" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_levels" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer3" groups=["ui_complete", "ui_startup"]]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Levels"
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer3" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer" groups=["ui_complete", "ui_startup"]]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_options" type="Button" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_startup"]]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Options"
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel4" type="Panel" parent="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer" groups=["ui_complete", "ui_spacer", "ui_startup"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="GridContainer_ingame_overlay" type="GridContainer" parent="PanelContainer_fullscreen" groups=["ui_complete", "ui_ingame_overlay", "ui_tween"]]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Button_ingame_menu" type="Button" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+action_mode = 0
+text = "Menu"
+
+[node name="Button_overlay_round_done" type="Button" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay", "ui_overlay_button_round"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+action_mode = 0
+text = "Round done"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer/PanelContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_3rmy1")
+
+[node name="Label" type="Label" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "Camera Setting"
+
+[node name="HSlider" type="HSlider" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" groups=["ui_complete", "ui_ingame_overlay", "ui_zoom_slider"]]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 4.0
+value = 1.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 96.0
+mouse_filter = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3" groups=["ui_complete", "ui_ingame_end"]]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2" groups=["ui_complete", "ui_ingame_end", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 33.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2" groups=["ui_complete", "ui_ingame_end"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 33.0
+
+[node name="Panel3" type="Panel" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer" groups=["ui_complete", "ui_ingame_end", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 33.0
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer" groups=["ui_complete", "ui_ingame_end"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 33.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/PanelContainer" groups=["ui_complete", "ui_ingame_end"]]
+layout_mode = 2
+
+[node name="Button_continue" type="Button" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/PanelContainer/VBoxContainer" groups=["ui_complete", "ui_ingame_end", "ui_ingame_end_display"]]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/icon_max_width = 600
+icon = ExtResource("7_dk3q0")
+
+[node name="Label" type="Label" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/PanelContainer/VBoxContainer/Button_continue" groups=["ui_complete", "ui_ingame_end"]]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "continue"
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer" groups=["ui_complete", "ui_ingame_end", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 33.0
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2" groups=["ui_complete", "ui_ingame_end", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 33.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3" groups=["ui_complete", "ui_merge_selection"]]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel2" type="Panel" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer" groups=["ui_complete", "ui_ingame_overlay", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer" groups=["ui_complete", "ui_ingame_overlay", "ui_merge_selection"]]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Rock" type="Button" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+theme_override_constants/icon_max_width = 200
+icon = ExtResource("10_jhfhi")
+
+[node name="Paper" type="Button" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+theme_override_constants/icon_max_width = 200
+icon = ExtResource("11_g3y55")
+
+[node name="Scissors" type="Button" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+theme_override_constants/icon_max_width = 200
+icon = ExtResource("12_2cj7w")
+icon_alignment = 1
+
+[node name="Panel5" type="Panel" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Panel3" type="Panel" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer" groups=["ui_complete", "ui_ingame_overlay", "ui_spacer"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Panel" type="PanelContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2/Panel" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+
+[node name="Label_round_name" type="Label" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2/Panel/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.06
+text = "Turn:"
+
+[node name="Label_round_count" type="Label" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2/Panel/HBoxContainer" groups=["ui_complete", "ui_ingame_overlay", "ui_ingame_round_count"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.06
+text = "0000"
+
+[node name="Button_control_move" type="Button" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_ingame_overlay", "ui_ingame_overlay_button_move", "ui_overlay_button_mode"]]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move / Attack"
+
+[node name="Button3_control_merge" type="Button" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_ingame_overlay", "ui_ingame_overlay_button_merge", "ui_overlay_button_mode"]]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Merge
+"
+
+[node name="Panel2" type="PanelContainer" parent="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2" groups=["ui_complete", "ui_ingame_overlay"]]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer_godot_themes" type="PanelContainer" parent="PanelContainer_fullscreen" groups=["ui_complete", "ui_godot"]]
+visible = false
+texture_filter = 1
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer_fullscreen/PanelContainer_godot_themes" groups=["ui_complete", "ui_godot"]]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer_fullscreen/PanelContainer_godot_themes/VBoxContainer" groups=["ui_complete", "ui_godot"]]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("13_bxeby")
+
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_final/Button_main_menu" to="." method="_on_button_main_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_tutorial/Button_play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer/Button_resume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer2/Button_options" to="." method="_on_button_options_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_ingame_menu/VBoxContainer/HBoxContainer3/Button_main" to="." method="_on_button_main_pressed"]
+[connection signal="value_changed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/GridContainer/HSlider_volume" to="." method="_on_h_slider_volume_value_changed"]
+[connection signal="value_changed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/GridContainer/HSlider_music" to="." method="_on_h_slider_music_value_changed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_options/VBoxContainer/HBoxContainer2/Button_options_back" to="." method="_on_button_options_back_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_levels/VBoxContainer/HBoxContainer/Button_options_back" to="." method="_on_button_options_back_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer4/Button_change_players" to="." method="_on_button_change_players_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer/Button_play_tutorial" to="." method="_on_button_play_tutorial_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer3/Button_levels" to="." method="_on_button_levels_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/PanelContainer_help_menu/PanelContainer_main_menu/VBoxContainer/HBoxContainer2/Button_options" to="." method="_on_button_options_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer/Button_ingame_menu" to="." method="_on_button_menu_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer/Button_overlay_round_done" to="." method="_on_button_overlay_round_done_pressed"]
+[connection signal="value_changed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/PanelContainer/VBoxContainer/Button_continue" to="." method="_on_button_continue_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/Rock" to="." method="_on_rock_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/Paper" to="." method="_on_paper_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/Scissors" to="." method="_on_scissors_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2/Button_control_move" to="." method="_on_button_control_move_pressed"]
+[connection signal="pressed" from="PanelContainer_fullscreen/GridContainer_ingame_overlay/VBoxContainer/HBoxContainer2/Button3_control_merge" to="." method="_on_button_3_control_merge_pressed"]

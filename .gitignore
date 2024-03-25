@@ -1,0 +1,9 @@
+# blender backups
+*.blend?*
+
+# krita autosave
+*autosave.kra
+*.png~
+*.kra~
+
+out

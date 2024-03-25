@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://btgdnonhptdt4"]
+
+[ext_resource type="Script" path="res://game/GamePickup.gd" id="1_ialqg"]
+[ext_resource type="Texture2D" uid="uid://buf60sjcymfwn" path="res://game/res/pickup_002-red.png" id="2_v6vac"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ob7a"]
+albedo_color = Color(0.156863, 0.505882, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_n8wta"]
+size = Vector3(1, 1, 0.75)
+
+[node name="Pickup" type="Node3D"]
+script = ExtResource("1_ialqg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_0ob7a")
+mesh = SubResource("PrismMesh_n8wta")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(0, 250)
+pixel_size = 0.0006
+billboard = 1
+no_depth_test = true
+texture = ExtResource("2_v6vac")

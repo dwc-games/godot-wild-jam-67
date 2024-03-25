@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjtbu2vfbsq8l"]
+
+[ext_resource type="Script" path="res://game/GamePlayerHuman.gd" id="1_mk1cf"]
+
+[node name="HumanPlayer" type="Node"]
+script = ExtResource("1_mk1cf")
+player_id = 1

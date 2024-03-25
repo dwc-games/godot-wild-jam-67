@@ -1,0 +1,685 @@
+[gd_scene load_steps=16 format=3 uid="uid://dqqwckcjrh312"]
+
+[ext_resource type="Script" path="res://game/GameController.gd" id="1_63ca1"]
+[ext_resource type="Script" path="res://game/GameGrid.gd" id="2_hvf8d"]
+[ext_resource type="PackedScene" uid="uid://x2wchoy5y8w3" path="res://game/gameTile.tscn" id="4_b1qpp"]
+[ext_resource type="Texture2D" uid="uid://crx4cd67bl245" path="res://game/res/hexa_neural.png" id="5_tr4ya"]
+[ext_resource type="PackedScene" uid="uid://c877upoxro1lc" path="res://game/gameCharacter.tscn" id="6_304c5"]
+[ext_resource type="Texture2D" uid="uid://cvu1yt5ml5j2y" path="res://game/res/hexa_neural_normal.png" id="6_wvhe4"]
+[ext_resource type="PackedScene" uid="uid://btgdnonhptdt4" path="res://game/gamePickup.tscn" id="7_dbcax"]
+[ext_resource type="Script" path="res://game/GameCamera.gd" id="8_eky5w"]
+[ext_resource type="Texture2D" uid="uid://dqprgcgod6yne" path="res://game/res/neural.png" id="9_xrvcu"]
+
+[sub_resource type="Environment" id="Environment_hu0aq"]
+background_mode = 1
+background_intensity = 1.0
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
+fog_density = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_va11r"]
+shading_mode = 0
+albedo_texture = ExtResource("9_xrvcu")
+uv1_scale = Vector3(2, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_b86hv"]
+flip_faces = true
+radius = 35.0
+height = 100.0
+
+[sub_resource type="Animation" id="Animation_h8vxh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_aerch"]
+resource_name = "background"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wjhjx"]
+_data = {
+"RESET": SubResource("Animation_h8vxh"),
+"background": SubResource("Animation_aerch")
+}
+
+[node name="Skin" type="Node3D"]
+
+[node name="GameController" type="Node" parent="." node_paths=PackedStringArray("grid")]
+script = ExtResource("1_63ca1")
+grid = NodePath("GameGrid")
+
+[node name="GameGrid" type="Node" parent="GameController" node_paths=PackedStringArray("tiles", "characters", "pickups")]
+script = ExtResource("2_hvf8d")
+tiles = [NodePath("Tiles/Tile"), NodePath("Tiles/Tile11"), NodePath("Tiles/Tile12"), NodePath("Tiles/p6"), NodePath("Tiles/Tile2"), NodePath("Tiles/Tile14"), NodePath("Tiles/Tile15"), NodePath("Tiles/Tile16"), NodePath("Tiles/Tile24"), NodePath("Tiles/Tile25"), NodePath("Tiles/Tile33"), NodePath("Tiles/Tile50"), NodePath("Tiles/Tile51"), NodePath("Tiles/Tile52"), NodePath("Tiles/Tile54"), NodePath("Tiles/Tile55"), NodePath("Tiles/Tile56"), NodePath("Tiles/Tile53"), NodePath("Tiles/Tile26"), NodePath("Tiles/Tile17"), NodePath("Tiles/Tile18"), NodePath("Tiles/Tile27"), NodePath("Tiles/Tile28"), NodePath("Tiles/Tile29"), NodePath("Tiles/Tile30"), NodePath("Tiles/Tile31"), NodePath("Tiles/Tile32"), NodePath("Tiles/Tile34"), NodePath("Tiles/Tile35"), NodePath("Tiles/Tile36"), NodePath("Tiles/Tile37"), NodePath("Tiles/Tile38"), NodePath("Tiles/Tile39"), NodePath("Tiles/Tile40"), NodePath("Tiles/s2"), NodePath("Tiles/Tile45"), NodePath("Tiles/Tile76"), NodePath("Tiles/Tile82"), NodePath("Tiles/p2"), NodePath("Tiles/Tile84"), NodePath("Tiles/Tile75"), NodePath("Tiles/Tile42"), NodePath("Tiles/pf"), NodePath("Tiles/Tile47"), NodePath("Tiles/Tile48"), NodePath("Tiles/s1"), NodePath("Tiles/Tile46"), NodePath("Tiles/Tile57"), NodePath("Tiles/s3"), NodePath("Tiles/Tile64"), NodePath("Tiles/Tile65"), NodePath("Tiles/p3"), NodePath("Tiles/Tile67"), NodePath("Tiles/Tile69"), NodePath("Tiles/Tile70"), NodePath("Tiles/Tile71"), NodePath("Tiles/p4"), NodePath("Tiles/Tile68"), NodePath("Tiles/Tile61"), NodePath("Tiles/Tile62"), NodePath("Tiles/p5"), NodePath("Tiles/Tile63"), NodePath("Tiles/Tile78"), NodePath("Tiles/Tile79"), NodePath("Tiles/Tile80"), NodePath("Tiles/Tile81"), NodePath("Tiles/Tile73"), NodePath("Tiles/Tile74"), NodePath("Tiles/Tile58"), NodePath("Tiles/Tile59"), NodePath("Tiles/p1"), NodePath("Tiles/Tile20"), NodePath("Tiles/Tile21"), NodePath("Tiles/Tile22"), NodePath("Tiles/Tile23"), NodePath("Tiles/Tile3"), NodePath("Tiles/Tile4"), NodePath("Tiles/Tile5"), NodePath("Tiles/Tile6"), NodePath("Tiles/Tile7"), NodePath("Tiles/Tile8"), NodePath("Tiles/Tile9"), NodePath("Tiles/Tile10")]
+characters = [NodePath("Characters/Character"), NodePath("Characters/Character2"), NodePath("Characters/Character3")]
+pickups = [NodePath("Pickups/Pickup2"), NodePath("Pickups/Pickup12"), NodePath("Pickups/Pickup11"), NodePath("Pickups/Pickup5"), NodePath("Pickups/Pickup3"), NodePath("Pickups/Pickup6"), NodePath("Pickups/Pickup9"), NodePath("Pickups/Pickup4"), NodePath("Pickups/Pickup7"), NodePath("Pickups/Pickup8"), NodePath("Pickups/Pickup10")]
+
+[node name="Players" type="Node" parent="GameController/GameGrid"]
+
+[node name="Tiles" type="Node" parent="GameController/GameGrid"]
+
+[node name="Tile" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile11" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.866025, 0, 1.5)
+grid_position = Vector2i(-1, 1)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile12" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73205, 0, 3)
+grid_position = Vector2i(-1, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="p6" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+grid_position = Vector2i(0, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile2" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73205, 0, 0)
+grid_position = Vector2i(1, 0)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile14" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59808, 0, 1.5)
+grid_position = Vector2i(1, 1)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile15" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33013, 0, 1.5)
+grid_position = Vector2i(2, 1)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile16" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19615, 0, 3)
+grid_position = Vector2i(3, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile24" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33013, 0, 4.5)
+grid_position = Vector2i(2, 3)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile25" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4641, 0, 6)
+grid_position = Vector2i(2, 4)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile33" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59808, 0, 7.5)
+grid_position = Vector2i(1, 5)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile50" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4641, 0, 9)
+grid_position = Vector2i(2, 6)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile51" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33013, 0, 10.5)
+grid_position = Vector2i(2, 7)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile52" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4641, 0, 12)
+grid_position = Vector2i(2, 8)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile54" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73205, 0, 12)
+grid_position = Vector2i(1, 8)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile55" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+grid_position = Vector2i(0, 8)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile56" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.866025, 0, 10.5)
+grid_position = Vector2i(0, 7)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile53" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19615, 0, 12)
+grid_position = Vector2i(3, 8)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile26" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19615, 0, 6)
+grid_position = Vector2i(3, 4)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile17" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9282, 0, 3)
+grid_position = Vector2i(4, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile18" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.66025, 0, 3)
+grid_position = Vector2i(5, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile27" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.52628, 0, 4.5)
+grid_position = Vector2i(5, 3)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile28" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3923, 0, 6)
+grid_position = Vector2i(6, 4)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile29" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1244, 0, 6)
+grid_position = Vector2i(7, 4)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile30" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8564, 0, 6)
+grid_position = Vector2i(8, 4)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile31" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7224, 0, 7.5)
+grid_position = Vector2i(8, 5)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile32" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4545, 0, 7.5)
+grid_position = Vector2i(9, 5)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile34" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5885, 0, 9)
+grid_position = Vector2i(9, 6)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile35" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3205, 0, 9)
+grid_position = Vector2i(10, 6)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile36" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1865, 0, 10.5)
+grid_position = Vector2i(10, 7)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile37" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3205, 0, 12)
+grid_position = Vector2i(10, 8)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile38" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1865, 0, 13.5)
+grid_position = Vector2i(10, 9)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile39" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3205, 0, 15)
+grid_position = Vector2i(10, 10)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile40" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5885, 0, 15)
+grid_position = Vector2i(9, 10)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="s2" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8564, 0, 15)
+grid_position = Vector2i(8, 10)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile45" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7224, 0, 16.5)
+grid_position = Vector2i(8, 11)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile76" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3205, 0, 18)
+grid_position = Vector2i(10, 12)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile82" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5885, 0, 18)
+grid_position = Vector2i(9, 12)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="p2" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4545, 0, 19.5)
+grid_position = Vector2i(9, 13)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile84" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3205, 0, 21)
+grid_position = Vector2i(10, 14)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile75" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4545, 0, 16.5)
+grid_position = Vector2i(9, 11)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile42" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9904, 0, 13.5)
+grid_position = Vector2i(7, 9)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="pf" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3923, 0, 12)
+grid_position = Vector2i(6, 8)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile47" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.52628, 0, 10.5)
+grid_position = Vector2i(5, 7)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile48" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.66025, 0, 9)
+grid_position = Vector2i(5, 6)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="s1" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.52628, 0, 7.5)
+grid_position = Vector2i(5, 5)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile46" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9282, 0, 12)
+grid_position = Vector2i(4, 8)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile57" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79423, 0, 13.5)
+grid_position = Vector2i(4, 9)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="s3" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9282, 0, 15)
+grid_position = Vector2i(4, 10)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile64" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19615, 0, 15)
+grid_position = Vector2i(3, 10)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile65" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33013, 0, 16.5)
+grid_position = Vector2i(2, 11)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="p3" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4641, 0, 18)
+grid_position = Vector2i(2, 12)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile67" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59808, 0, 19.5)
+grid_position = Vector2i(1, 13)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile69" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73205, 0, 18)
+grid_position = Vector2i(1, 12)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile70" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.866025, 0, 16.5)
+grid_position = Vector2i(0, 11)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile71" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+grid_position = Vector2i(0, 10)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="p4" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73205, 0, 15)
+grid_position = Vector2i(1, 10)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile68" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73205, 0, 21)
+grid_position = Vector2i(1, 14)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile61" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.06218, 0, 16.5)
+grid_position = Vector2i(3, 11)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile62" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9282, 0, 18)
+grid_position = Vector2i(4, 12)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="p5" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3923, 0, 18)
+grid_position = Vector2i(6, 12)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile63" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.06218, 0, 19.5)
+grid_position = Vector2i(3, 13)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile78" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.52628, 0, 19.5)
+grid_position = Vector2i(5, 13)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile79" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2583, 0, 19.5)
+grid_position = Vector2i(6, 13)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile80" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9904, 0, 19.5)
+grid_position = Vector2i(7, 13)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile81" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8564, 0, 18)
+grid_position = Vector2i(8, 12)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile73" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19615, 0, 21)
+grid_position = Vector2i(3, 14)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile74" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9282, 0, 21)
+grid_position = Vector2i(4, 14)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile58" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.52628, 0, 13.5)
+grid_position = Vector2i(5, 9)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile59" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2583, 0, 13.5)
+grid_position = Vector2i(6, 9)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="p1" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3923, 0, 3)
+grid_position = Vector2i(6, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile20" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1244, 0, 3)
+grid_position = Vector2i(7, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile21" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8564, 0, 3)
+grid_position = Vector2i(8, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile22" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5885, 0, 3)
+grid_position = Vector2i(9, 2)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile23" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7224, 0, 1.5)
+grid_position = Vector2i(8, 1)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile3" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4641, 0, 0)
+grid_position = Vector2i(2, 0)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile4" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19615, 0, 0)
+grid_position = Vector2i(3, 0)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile5" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9282, 0, 0)
+grid_position = Vector2i(4, 0)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile6" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79423, 0, -1.5)
+grid_position = Vector2i(4, -1)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile7" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.52628, 0, -1.5)
+grid_position = Vector2i(5, -1)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile8" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2583, 0, -1.5)
+grid_position = Vector2i(6, -1)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile9" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9904, 0, -1.5)
+grid_position = Vector2i(7, -1)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Tile10" parent="GameController/GameGrid/Tiles" instance=ExtResource("4_b1qpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1244, 0, 0)
+grid_position = Vector2i(7, 0)
+image = ExtResource("5_tr4ya")
+normal = ExtResource("6_wvhe4")
+
+[node name="Characters" type="Node" parent="GameController/GameGrid"]
+
+[node name="Character" parent="GameController/GameGrid/Characters" node_paths=PackedStringArray("current_tile") instance=ExtResource("6_304c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.52628, 1, 7.5)
+current_tile = NodePath("../../Tiles/s1")
+
+[node name="Character2" parent="GameController/GameGrid/Characters" node_paths=PackedStringArray("current_tile") instance=ExtResource("6_304c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8564, 1, 15)
+player_id = 1
+current_tile = NodePath("../../Tiles/s2")
+character_fraction = 0
+character_type = 1
+
+[node name="Character3" parent="GameController/GameGrid/Characters" node_paths=PackedStringArray("current_tile") instance=ExtResource("6_304c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9282, 1, 15)
+player_id = 2
+current_tile = NodePath("../../Tiles/s3")
+character_fraction = 2
+character_type = 2
+
+[node name="Pickups" type="Node" parent="GameController/GameGrid"]
+
+[node name="Pickup2" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3923, 1, 3)
+current_tile = NodePath("../../Tiles/p1")
+
+[node name="Pickup12" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1244, 1, 0)
+current_tile = NodePath("../../Tiles/Tile10")
+
+[node name="Pickup11" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3205, 1, 9)
+current_tile = NodePath("../../Tiles/Tile35")
+
+[node name="Pickup5" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4545, 1, 19.5)
+current_tile = NodePath("../../Tiles/p2")
+
+[node name="Pickup3" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4641, 1, 18)
+current_tile = NodePath("../../Tiles/p3")
+
+[node name="Pickup6" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12)
+current_tile = NodePath("../../Tiles/Tile55")
+
+[node name="Pickup9" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3923, 1, 12)
+current_tile = NodePath("../../Tiles/pf")
+
+[node name="Pickup4" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73205, 1, 15)
+current_tile = NodePath("../../Tiles/p4")
+
+[node name="Pickup7" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3923, 1, 18)
+current_tile = NodePath("../../Tiles/p5")
+
+[node name="Pickup8" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+current_tile = NodePath("../../Tiles/p6")
+
+[node name="Pickup10" parent="GameController/GameGrid/Pickups" node_paths=PackedStringArray("current_tile") instance=ExtResource("7_dbcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19615, 1, 6)
+current_tile = NodePath("../../Tiles/Tile26")
+
+[node name="GameCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642787, 0, -0.642787, 0.766044, 9, 5, 16.3241)
+current = true
+fov = 70.0
+far = 200.0
+script = ExtResource("8_eky5w")
+maxPosition = Vector3(25, 15, 25)
+minPosition = Vector3(-5, 3, -5)
+
+[node name="World" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_hu0aq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.202317, 0.182051, 0.96225, -0.86273, 0.498097, 0.0871557, -0.463427, -0.847795, 0.257834, 18.4008, 4, 10.649)
+light_intensity_lux = 2.0
+light_color = Color(0.780392, 0.909804, 0.92549, 1)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_va11r")
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_b86hv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/MeshInstance3D"]
+libraries = {
+"": SubResource("AnimationLibrary_wjhjx")
+}
+autoplay = "background"
+speed_scale = 0.3
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.97154, 0.543834, 26.0528)
+light_intensity_lumens = 500.0
+light_negative = true
+omni_range = 30.0
+omni_attenuation = 0.105112
